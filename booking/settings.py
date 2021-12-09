@@ -18,8 +18,11 @@ INSTALLED_APPS = [
 
     'api',
     'custom_users',
+    'accounts',
+
     'rest_framework',
     'rest_framework.authtoken',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -93,3 +96,5 @@ REST_FRAMEWORK = {
 }
 
 AUTH_USER_MODEL = 'custom_users.CustomUser'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
