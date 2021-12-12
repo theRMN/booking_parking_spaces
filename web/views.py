@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 
 from api.models import Parking, ParkingDetail
 from web import forms
+from web.permissions import ManagerPermissionMixin, EmployeeManagerPermissionMixin, SuperuserPermissionsMixin
 
 
 class ParkingView(ListView):
@@ -12,13 +13,13 @@ class ParkingView(ListView):
     template_name = 'api/index.html'
 
 
-class CreateParkingView(LoginRequiredMixin, CreateView):
+class CreateParkingView(LoginRequiredMixin, SuperuserPermissionsMixin, CreateView):
     template_name = 'api/create_parking.html'
     form_class = forms.CreateParkingForm
     success_url = reverse_lazy('parking_places')
 
 
-class DeleteParkingView(LoginRequiredMixin, DeleteView):
+class DeleteParkingView(LoginRequiredMixin, SuperuserPermissionsMixin, DeleteView):
     model = Parking
     success_url = reverse_lazy('parking_places')
 
@@ -39,18 +40,18 @@ class ParkingDetailView(ListView):
         return context
 
 
-class CreateParkingDetailView(LoginRequiredMixin, CreateView):
+class CreateParkingDetailView(LoginRequiredMixin, EmployeeManagerPermissionMixin, CreateView):
     template_name = 'api/create_parking_detail.html'
     form_class = forms.CreateParkingDetailForm
     success_url = reverse_lazy('parking_places')
 
 
-class DeleteParkingDetailView(LoginRequiredMixin, DeleteView):
+class DeleteParkingDetailView(LoginRequiredMixin, ManagerPermissionMixin, DeleteView):
     model = ParkingDetail
     success_url = reverse_lazy('parking_places')
 
 
-class UpdateParkingDetailView(LoginRequiredMixin, UpdateView):
+class UpdateParkingDetailView(LoginRequiredMixin, ManagerPermissionMixin, UpdateView):
     model = ParkingDetail
     form_class = forms.UpdateParkingDetailForm
     success_url = reverse_lazy('parking_places')
