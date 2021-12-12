@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('arrival', models.DateTimeField(verbose_name='Время прибытия')),
                 ('departure', models.DateTimeField(verbose_name='Время отъезда')),
-                ('parking', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='api.parking', verbose_name='Парковочное место')),
+                ('parking', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='web.parking', verbose_name='Парковочное место')),
             ],
             options={
                 'ordering': ['-arrival'],

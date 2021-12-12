@@ -17,6 +17,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'api',
+    'web',
     'custom_users',
     'accounts',
 
@@ -98,3 +99,5 @@ REST_FRAMEWORK = {
 AUTH_USER_MODEL = 'custom_users.CustomUser'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL = '/parking_places/'
