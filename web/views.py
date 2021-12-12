@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
@@ -11,13 +12,13 @@ class ParkingView(ListView):
     template_name = 'api/index.html'
 
 
-class CreateParkingView(CreateView):
+class CreateParkingView(LoginRequiredMixin, CreateView):
     template_name = 'api/create_parking.html'
     form_class = forms.CreateParkingForm
     success_url = reverse_lazy('parking_places')
 
 
-class DeleteParkingView(DeleteView):
+class DeleteParkingView(LoginRequiredMixin, DeleteView):
     model = Parking
     success_url = reverse_lazy('parking_places')
 
@@ -38,18 +39,18 @@ class ParkingDetailView(ListView):
         return context
 
 
-class CreateParkingDetailView(CreateView):
+class CreateParkingDetailView(LoginRequiredMixin, CreateView):
     template_name = 'api/create_parking_detail.html'
     form_class = forms.CreateParkingDetailForm
     success_url = reverse_lazy('parking_places')
 
 
-class DeleteParkingDetailView(DeleteView):
+class DeleteParkingDetailView(LoginRequiredMixin, DeleteView):
     model = ParkingDetail
     success_url = reverse_lazy('parking_places')
 
 
-class UpdateParkingDetailView(UpdateView):
+class UpdateParkingDetailView(LoginRequiredMixin, UpdateView):
     model = ParkingDetail
     form_class = forms.UpdateParkingDetailForm
     success_url = reverse_lazy('parking_places')
