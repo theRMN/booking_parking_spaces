@@ -15,3 +15,4 @@ class ParkingDetail(models.Model):
 
     class Meta:
         ordering = ['-arrival']
+        unique_together = ('parking', 'arrival', 'departure')
