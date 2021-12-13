@@ -3,6 +3,7 @@ from django.urls import path
 from web import views
 
 urlpatterns = [
+    path('', views.MainView.as_view(), name='main_page'),
     path('parking_places/', views.ParkingView.as_view(), name='parking_places'),
     path('parking_places/<int:pk>/', views.ParkingDetailView.as_view()),
     path('create_parking/', views.CreateParkingView.as_view(), name='create_parking'),

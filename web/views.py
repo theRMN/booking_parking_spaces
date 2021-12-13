@@ -2,15 +2,20 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
+from django.views.generic.base import TemplateView
 
 from api.models import Parking, ParkingDetail
 from web import forms
 from web.permissions import ManagerPermissionMixin, EmployeeManagerPermissionMixin, SuperuserPermissionsMixin
 
 
+class MainView(TemplateView):
+    template_name = 'api/index.html'
+
+
 class ParkingView(ListView):
     model = Parking
-    template_name = 'api/index.html'
+    template_name = 'api/parking.html'
 
 
 class CreateParkingView(LoginRequiredMixin, SuperuserPermissionsMixin, CreateView):
@@ -25,7 +30,7 @@ class DeleteParkingView(LoginRequiredMixin, SuperuserPermissionsMixin, DeleteVie
 
 
 class ParkingDetailView(ListView):
-    template_name = 'api/parking.html'
+    template_name = 'api/parking_detail.html'
 
     def get_queryset(self):
         new_context = ParkingDetail.objects.filter(parking=self.kwargs.get('pk'))

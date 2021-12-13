@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <form action="{% url 'delete_parking' parking.id %}" method="POST">
+        {% csrf_token %}
+        <a>Парковочное место: {{ parking }}</a>
+        <input type="hidden" name="parking_id" value="{{ parking.id }}"/>
+        <button type="submit" class="btn btn-default btn-sm">Удалить</button>
+    </form>
+
+    <br><br>
+    {% for parking_detail in object_list %}
+    <form method="POST">
+        {% csrf_token %}
+        <a>Прибытие: {{ parking_detail.arrival }}</a>
+        <a>|</a>
+        <a>Отъезд: {{ parking_detail.departure }}</a>
+        <input type="hidden" name="parking_detail_id" value="{{ parking_detail.id }}"/>
+        <button formaction="{% url 'delete_parking_detail' parking_detail.id %}" type="submit">Удалить</button>
+        <a href="{% url 'update_parking_detail' parking_detail.id %}">Изменить</a>
+    </form>
+    <br>
+    {% endfor %}
+    <br>
+    <a href="{% url 'parking_places' %}">Назад</a>
+</body>
+</html>
