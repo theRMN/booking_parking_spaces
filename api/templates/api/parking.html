@@ -21,8 +21,8 @@
         <a>|</a>
         <a>Отъезд: {{ parking_detail.departure }}</a>
         <input type="hidden" name="parking_detail_id" value="{{ parking_detail.id }}"/>
-        <button formaction="{% url 'update_parking_detail' parking_detail.id %}" type="submit" class="btn btn-default btn-sm">Изменить</button>
-        <button formaction="{% url 'delete_parking_detail' parking_detail.id %}" type="submit" class="btn btn-default btn-sm">Удалить</button>
+        <button formaction="{% url 'delete_parking_detail' parking_detail.id %}" type="submit">Удалить</button>
+        <a href="{% url 'update_parking_detail' parking_detail.id %}">Изменить</a>
     </form>
     <br>
     {% endfor %}
