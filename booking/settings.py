@@ -59,23 +59,23 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'booking.wsgi.application'
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'booking_parking_place',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-        'USER': 'admin',
-        'PASSWORD': 'admin',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'booking_parking_place',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432',
+#         'USER': 'admin',
+#         'PASSWORD': 'admin',
+#     }
+# }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
