@@ -57,8 +57,8 @@ TEMPLATES = [
     },
 ]
 
-# WSGI_APPLICATION = 'booking.wsgi.application'
-#
+WSGI_APPLICATION = 'booking.wsgi.application'
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
