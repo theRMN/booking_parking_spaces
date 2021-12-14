@@ -1,12 +1,15 @@
+import os
 from pathlib import Path
+
+import django_heroku
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-ue^-tj!4kdd9(&-kh^sv_sc(xra6tgg65d7uq7t)sb^5v*jh4)'
 
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -54,15 +57,25 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'booking.wsgi.application'
+# WSGI_APPLICATION = 'booking.wsgi.application'
+#
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'booking_parking_place',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+        'USER': 'admin',
+        'PASSWORD': 'admin',
     }
 }
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -101,3 +114,7 @@ AUTH_USER_MODEL = 'custom_users.CustomUser'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = '/parking_places/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+django_heroku.settings(locals())
